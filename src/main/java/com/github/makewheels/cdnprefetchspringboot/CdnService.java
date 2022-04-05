@@ -3,6 +3,7 @@ package com.github.makewheels.cdnprefetchspringboot;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import jdk.nashorn.internal.scripts.JO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,12 @@ public class CdnService {
     }
 
     public JSONObject prefetch(JSONObject prefetch) {
-        String missionId = prefetch.getString("missionId");
-        List<String> urlList = prefetch.getJSONArray("urlList").toJavaList(String.class);
-        download(urlList);
-        JSONObject response = new JSONObject();
-        response.put("missionId", missionId);
-        return response;
+        new Thread(() -> {
+            String missionId = prefetch.getString("missionId");
+            log.info("missionId = " + missionId);
+            List<String> urlList = prefetch.getJSONArray("urlList").toJavaList(String.class);
+            download(urlList);
+        }).start();
+        return new JSONObject();
     }
 }
