@@ -13,9 +13,10 @@ import java.util.List;
 public class CdnService {
     private void download(List<String> urlList) {
         for (String url : urlList) {
-            System.out.println(url);
+            log.info(url);
             HttpUtil.get(url);
         }
+        log.info("Finished");
     }
 
     public JSONObject prefetch(JSONObject prefetch) {
