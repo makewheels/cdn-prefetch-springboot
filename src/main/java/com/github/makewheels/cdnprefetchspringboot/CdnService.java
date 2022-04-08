@@ -48,7 +48,7 @@ public class CdnService {
         }).start();
         JSONObject response = new JSONObject();
         response.put("missionId", missionId);
-        response.put("message", "我收到任务了, mac = " + NetUtil.getLocalMacAddress());
+        response.put("message", "我收到任务了");
         return response;
     }
 
