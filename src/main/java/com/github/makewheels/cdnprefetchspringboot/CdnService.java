@@ -48,12 +48,7 @@ public class CdnService {
         }).start();
         JSONObject response = new JSONObject();
         response.put("missionId", missionId);
-        CpuInfo cpuInfo = OshiUtil.getCpuInfo();
-        System.out.println(cpuInfo);
-
-        response.put("message", "我收到任务了,"
-                + " mac = " + NetUtil.getLocalMacAddress()
-                + "\ncpuInfo = " + OshiUtil.getCpuInfo().getCpuModel());
+        response.put("message", "我收到任务了, mac = " + NetUtil.getLocalMacAddress());
         return response;
     }
 
